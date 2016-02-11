@@ -1,0 +1,30 @@
+#!/bin/bash
+# convert .NEF pics into .JPG pics in a specified folder (default is ./JPG/)
+
+while true; do
+    read -p "Do you wish to save the newly created files in the ./JPG/ folder? yes(Y) or no(N)?" yn
+    case $yn in
+        [Yy]* ) inputFile=./JPG; break;;
+        [Nn]* ) read -erp "OK, then provide the path to where you want the resulting files to be saved: " inputFile; break;;
+        * ) echo "Please answer yes(Y) or no(N).";;
+    esac
+done
+
+if [ -e $inputFile ]; then
+echo "$inputFile already exists"
+else
+mkdir $inputFile
+echo "$inputFile folder was created"
+fi
+
+for i in *.NEF; do
+if [ -e $inputFile/${i:0:${#i}-4}.JPG ]; then
+echo "$inputFile/${i:0:${#i}-4}.JPG already exists"
+else
+convert ${i:0:${#i}-4}.NEF $inputFile/${i:0:${#i}-4}.JPG 
+echo "file ${i:0:${#i}-4}.NEF converted"
+fi
+done
+
+echo "all .NEF files had been converted into .JPG and saved in the folder $inputFile"
+exit 0
