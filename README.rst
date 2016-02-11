@@ -37,8 +37,8 @@ running::
 
 $ export set PATH=$PATH:~/bin
 
-To use the script open a terminal, place yourself to the directory where you 
-uploaded your NEF photos and run::
+To use the script open a terminal, cd to the directory where you uploaded your 
+NEF photos and run::
 
 $ convertNEF2JPG
 
